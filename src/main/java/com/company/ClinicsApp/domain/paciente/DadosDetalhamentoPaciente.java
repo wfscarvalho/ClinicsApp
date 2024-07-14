@@ -1,11 +1,6 @@
-package com.company.ClinicsApp.paciente;
+package com.company.ClinicsApp.domain.paciente;
 
-import com.company.ClinicsApp.endereco.DadosEndereco;
-import com.company.ClinicsApp.endereco.Endereco;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import com.company.ClinicsApp.domain.endereco.Endereco;
 
 public record DadosDetalhamentoPaciente(
         String nome,

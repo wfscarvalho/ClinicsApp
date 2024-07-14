@@ -1,8 +1,9 @@
 package com.company.ClinicsApp.controller;
 
-import com.company.ClinicsApp.medico.DadosCadastroMedico;
-import com.company.ClinicsApp.medico.DadosDetalhamentoMedico;
-import com.company.ClinicsApp.paciente.*;
+import com.company.ClinicsApp.domain.paciente.DadosListagemPaciente;
+import com.company.ClinicsApp.domain.paciente.Paciente;
+import com.company.ClinicsApp.domain.paciente.PacienteRepository;
+import com.company.ClinicsApp.domain.paciente.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

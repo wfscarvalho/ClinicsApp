@@ -1,4 +1,4 @@
-package com.company.ClinicsApp.medico;
+package com.company.ClinicsApp.domain.medico;
 
 public enum Especialidade {
     ORTOPEDIA,

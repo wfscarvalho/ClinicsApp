@@ -1,6 +1,9 @@
 package com.company.ClinicsApp.controller;
 
-import com.company.ClinicsApp.medico.*;
+import com.company.ClinicsApp.domain.medico.DadosListagemMedico;
+import com.company.ClinicsApp.domain.medico.Medico;
+import com.company.ClinicsApp.domain.medico.MedicoRepository;
+import com.company.ClinicsApp.domain.medico.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +13,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/medicos")

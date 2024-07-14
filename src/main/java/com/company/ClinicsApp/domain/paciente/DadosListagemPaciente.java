@@ -1,4 +1,4 @@
-package com.company.ClinicsApp.paciente;
+package com.company.ClinicsApp.domain.paciente;
 
 public record DadosListagemPaciente (Long id, String nome, String email, String cpf) {
 

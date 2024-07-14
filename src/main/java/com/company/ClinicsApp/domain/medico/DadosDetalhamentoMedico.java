@@ -1,6 +1,6 @@
-package com.company.ClinicsApp.medico;
+package com.company.ClinicsApp.domain.medico;
 
-import com.company.ClinicsApp.endereco.Endereco;
+import com.company.ClinicsApp.domain.endereco.Endereco;
 
 public record DadosDetalhamentoMedico (Long id, String nome, String email, String crm, String telefone, Especialidade especialidade, Endereco endereco){
 

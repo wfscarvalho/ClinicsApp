@@ -1,6 +1,6 @@
-package com.company.ClinicsApp.paciente;
+package com.company.ClinicsApp.domain.paciente;
 
-import com.company.ClinicsApp.endereco.Endereco;
+import com.company.ClinicsApp.domain.endereco.Endereco;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
