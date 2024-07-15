@@ -1,12 +1,15 @@
 package com.company.ClinicsApp.domain.consulta;
 
 import com.company.ClinicsApp.domain.ValidacaoException;
+import com.company.ClinicsApp.domain.consulta.validacoes.agendamento.ValidadorAgendamentoDeConsulta;
+import com.company.ClinicsApp.domain.consulta.validacoes.cancelamento.ValidadorCancelamentoDeConsulta;
 import com.company.ClinicsApp.domain.medico.Medico;
 import com.company.ClinicsApp.domain.medico.MedicoRepository;
-import com.company.ClinicsApp.domain.paciente.Paciente;
 import com.company.ClinicsApp.domain.paciente.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AgendaDeConsultas {
@@ -20,7 +23,13 @@ public class AgendaDeConsultas {
     @Autowired
     private PacienteRepository pacienteRepository;
 
-    public void agendar(DadosAgendamentoConsulta dados){
+    @Autowired
+    private List<ValidadorAgendamentoDeConsulta> validadores;
+
+    @Autowired
+    private List<ValidadorCancelamentoDeConsulta> validadoresCancelamento;
+
+    public DadosDetalhamentoConsulta agendar(DadosAgendamentoConsulta dados){
 
         if (!pacienteRepository.existsById(dados.idPaciente())){
             throw new ValidacaoException("Id do Paciente não existe");
@@ -30,11 +39,15 @@ public class AgendaDeConsultas {
             throw new ValidacaoException("Id do Médico não existe");
         }
 
+        validadores.forEach(validadorAgendamentoDeConsulta -> validadorAgendamentoDeConsulta.validar(dados));
 
         var paciente = pacienteRepository.findById(dados.idPaciente()).get();
         var medico = escolherMedico(dados);
         var consulta = new Consulta(null, medico, paciente, dados.data(), null);
-        consultaRepository.save(consulta);
+        var consultaCriada = consultaRepository.save(consulta);
+        System.out.println(consultaCriada);
+
+        return new DadosDetalhamentoConsulta(consultaCriada);
     }
 
     private Medico escolherMedico(DadosAgendamentoConsulta dados) {
@@ -60,6 +73,9 @@ public class AgendaDeConsultas {
         if (!consultaRepository.existsById(dados.idConsulta())){
             throw new ValidacaoException("Id da consulta informado não existe");
         }
+
+        validadoresCancelamento.forEach(v -> v.validar(dados));
+
 
         var consulta = consultaRepository.getReferenceById(dados.idConsulta());
 

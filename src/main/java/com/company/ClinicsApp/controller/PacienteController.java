@@ -4,6 +4,8 @@ import com.company.ClinicsApp.domain.paciente.DadosListagemPaciente;
 import com.company.ClinicsApp.domain.paciente.Paciente;
 import com.company.ClinicsApp.domain.paciente.PacienteRepository;
 import com.company.ClinicsApp.domain.paciente.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/pacientes")
+@SecurityRequirement(name = "bearer-key")
 public class PacienteController {
 
     @Autowired

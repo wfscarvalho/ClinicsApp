@@ -1,6 +1,7 @@
 package com.company.ClinicsApp.controller;
 
 import com.company.ClinicsApp.domain.consulta.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/consultas")
+@SecurityRequirement(name = "bearer-key")
 public class ConsultasController {
 
     @Autowired
@@ -24,9 +26,9 @@ public class ConsultasController {
 //        var consulta = new Consulta(dadosCadastroConsulta);
         //ConsultaRepository.save
 
-        agendaDeConsultas.agendar(dadosAgendamentoConsulta);
+        var consultaCriada = agendaDeConsultas.agendar(dadosAgendamentoConsulta);
 
-        return ResponseEntity.ok(new DadosDetalhamentoConsulta(null,null,null,null));
+        return ResponseEntity.ok(consultaCriada);
     }
 
 
